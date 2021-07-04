@@ -1,6 +1,9 @@
 ---
 name: Easy Env Vars
 description: Set one or more persistent env vars, which can use full bash syntax and reference previous vars.
+branding:
+  icon: terminal
+  color: gray-dark
 inputs:
   env:
       description: Multi-line string ENV_NAME=VALUE
