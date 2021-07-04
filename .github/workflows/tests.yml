@@ -32,7 +32,7 @@ jobs:
         with:
           env: |-
             VAR4="a value 4"
-            VAR5=" leading space"
+            VAR5=" a leading space"
 
       - name: Blank lines
         uses: ./
