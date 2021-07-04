@@ -1,0 +1,72 @@
+---
+name: Tests
+on:
+  push:
+  pull_request:
+env:
+  PREV: hello world
+jobs:
+  tests:
+    name: Run ezenv Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Single Value
+        uses: ./
+        with:
+          env: VAR1=val1
+
+      - name: Multiple Values
+        uses: ./
+        with:
+          env: |-
+            VAR2=val2
+            VAR3=val3
+
+      - name: Multiple With Spaces
+        uses: ./
+        with:
+          env: |-
+            VAR4=a value 4
+            VAR5= leading space
+
+      - name: Blank lines
+        uses: ./
+        with:
+          env: |
+            VAR6=val 6
+
+            VAR7=val 7
+
+      - name: Whitespace lines
+        uses: ./
+        with:
+          env: |
+            VAR8=val8
+               
+            VAR9=val9
+
+      - name: Pre-defined
+        uses: ./
+        with:
+          env: |
+            VARA=after ${VAR9} is valA
+            VARB=$PREV
+            VARC=say ${VARB%% *} to $VAR1
+
+      - name: assert
+        run: |
+          [[ "$VAR1" == "val1" ]]
+          [[ "$VAR2" == "val2" ]]
+          [[ "$VAR3" == "val3" ]]
+          [[ "$VAR4" == "a value 4" ]]
+          [[ "$VAR5" == " a leading space" ]]
+          [[ "$VAR6" == "val 6" ]]
+          [[ "$VAR7" == "val 7" ]]
+          [[ "$VAR8" == "val8" ]]
+          [[ "$VAR9" == "val9" ]]
+          [[ "$VARA" == "after val9 is valA" ]]
+          [[ "$VARB" == "hello world" ]]
+          [[ "$VARC" == "say hello to val1" ]]
