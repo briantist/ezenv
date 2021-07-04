@@ -1,4 +1,6 @@
 # briantist/ezenv
+[![Tests](https://github.com/briantist/ezenv/actions/workflows/tests.yml/badge.svg)](https://github.com/briantist/ezenv/actions/workflows/tests.yml)
+
 GitHub Action for easily setting persistent environment variables. Each variable is defined in order so variables can reference previous vars (to build paths for example). The assignments are done in `bash` so [shell parameter expansion](https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html) can be used.
 
 ## Inputs
