@@ -31,16 +31,16 @@ jobs:
         uses: ./
         with:
           env: |-
-            VAR4=a value 4
-            VAR5= leading space
+            VAR4="a value 4"
+            VAR5=' leading space'
 
       - name: Blank lines
         uses: ./
         with:
           env: |
-            VAR6=val 6
+            VAR6=val6
 
-            VAR7=val 7
+            VAR7=val7
 
       - name: Whitespace lines
         uses: ./
@@ -54,9 +54,9 @@ jobs:
         uses: ./
         with:
           env: |
-            VARA=after ${VAR9} is valA
+            VARA="after ${VAR9} is valA"
             VARB=$PREV
-            VARC=say ${VARB%% *} to $VAR1
+            VARC="say ${VARB%% *} to $VAR1"
 
       - name: assert
         run: |
@@ -65,8 +65,8 @@ jobs:
           [[ "$VAR3" == "val3" ]]
           [[ "$VAR4" == "a value 4" ]]
           [[ "$VAR5" == " a leading space" ]]
-          [[ "$VAR6" == "val 6" ]]
-          [[ "$VAR7" == "val 7" ]]
+          [[ "$VAR6" == "val6" ]]
+          [[ "$VAR7" == "val7" ]]
           [[ "$VAR8" == "val8" ]]
           [[ "$VAR9" == "val9" ]]
           [[ "$VARA" == "after val9 is valA" ]]
