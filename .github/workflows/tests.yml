@@ -13,6 +13,8 @@ jobs:
       run:
         shell: bash
     steps:
+      - uses: actions/checkout@v2
+
       - name: Single Value
         uses: ./
         with:
